@@ -1,57 +1,40 @@
-// backend/db.js
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://username:password@localhost:27017/mydatabase', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-
+mongoose.connect("mongodb://localhost:27017/paytm");
 
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
+    username:{
+        type: String, 
         required: true,
-        unique: true,
-        trim: true,
+        unique :true,
+        trim:true,
         lowercase: true,
-        minLength: 3,
-        maxLength: 30
+        minLength:3,
+        maxLength:30,
     },
-    password: {
+    password:{
         type: String,
         required: true,
         minLength: 6
     },
-    firstName: {
-        type: String,
+    firstName:{
+        type:String,
         required: true,
         trim: true,
-        maxLength: 50
+        maxLength: 50,
     },
-    lastName: {
-        type: String,
+    lastName:{
+        type:String,
         required: true,
         trim: true,
-        maxLength: 50
+        maxLength: 50,
     }
 });
 
-const accountSchema = new mongoose.Schema({
-    userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    balance:{
-        type: Number,
-        required:true
-    }
-})
-
-const Account = mongoose.model('Account',accountSchema);
 const User = mongoose.model('User', userSchema);
 
 module.exports = {
-	User,
-    Account
+    User
 };
+
+
